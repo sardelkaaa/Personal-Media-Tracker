@@ -6,14 +6,14 @@ import { ProfilePage } from "../pages/ProfilePage/ProfilePage";
 import { DashboardPage } from "../pages/DashboardPage/DashboardPage";
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        children: [
-            { path: "", element: <HomePage /> },
-            { path: "catalogue", element: <CataloguePage /> },
-            { path: "profile", element: <ProfilePage />},
-            { path: "dashboard", element: <DashboardPage />},
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "", element: <HomePage /> },
+      { path: "catalogue", element: <CataloguePage /> },
+      { path: "profile", element: <ProfilePage /> },
+      { path: "dashboard", element: <DashboardPage /> },
+    ],
+  },
+]);

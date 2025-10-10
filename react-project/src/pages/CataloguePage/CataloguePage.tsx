@@ -3,5 +3,5 @@ import React from "react";
 interface Props {}
 
 export const CataloguePage = (props: Props) => {
-    return <div>CataloguePage</div>
-}
+  return <h1>CataloguePage</h1>;
+};
