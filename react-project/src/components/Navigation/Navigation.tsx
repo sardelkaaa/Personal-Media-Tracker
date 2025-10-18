@@ -3,7 +3,7 @@ import { Anchor, Flex, Burger, Group, Menu, Drawer, Stack, AppShell } from "@man
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom';
 import { IconHome2, IconLayoutDashboard, IconMovie, IconUserCircle } from '@tabler/icons-react';
-import type { MobileNavigationProps } from "../../types/types";
+import type { MobileNavigationProps } from "../../utils/types";
 
 const NavigationItems = [
         {
@@ -17,8 +17,8 @@ const NavigationItems = [
             icon: IconLayoutDashboard
         },
         {
-            label: "Каталог",
-            path: "/catalogue",
+            label: "Каталог фильмов",
+            path: "/catalogue_movies",
             icon: IconMovie
         },
         {
