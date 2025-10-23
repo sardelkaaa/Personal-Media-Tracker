@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TextInput, Container, SimpleGrid, Card, Image, Text, Loader, Modal, RingProgress } from '@mantine/core';
+import { MultiSelect, Container, SimpleGrid, Card, Image, Text, Loader, Modal, RingProgress, Group, TextInput, Rating } from '@mantine/core';
 import { getMovies } from '../../api/api';
 import type { Movie } from '../../utils/types';
 import { useDisclosure } from '@mantine/hooks';
@@ -11,9 +11,13 @@ export function CatalogueMoviesPage() {
   const [opened, { open, close }] = useDisclosure(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [filtered, setFiltered] = useState<Movie[]>([]);
   const [search, setSearch] = useState('');
+  const [filtered, setFiltered] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // фильтры
+  const [genresFilter, setGenresFilter] = useState<string[]>(new Array);
+  const [yearsFilter, setYearsFilter] = useState<string[]>(new Array);
 
   useEffect(() => {
     getMovies()
@@ -26,12 +30,29 @@ export function CatalogueMoviesPage() {
   }, []);
 
   useEffect(() => {
-    const lower = search.toLowerCase();
-    const filtered = movies.filter(
-      (movie) =>
-        movie.title.toLowerCase().includes(lower) ||
-        movie.genre?.toLowerCase().includes(lower)
-    );
+    let result = movies;
+
+    if (genresFilter.length > 0) {
+      result = result.filter((movie) => genresFilter.some((genre) => 
+        movie.genre?.toLowerCase().includes(genre.toLowerCase())
+      ));
+    }
+
+    if (yearsFilter.length > 0) {
+      result = result.filter((movie) => 
+        yearsFilter.some((year) => movie.year?.toLowerCase().includes(year.toLowerCase()))
+      );
+    }
+
+    setFiltered(result);
+  }, [genresFilter, yearsFilter, movies]);
+
+  useEffect(() => {
+    const lower = search.toLowerCase(); 
+    const filtered = movies.filter((movie) => 
+      movie.title.toLowerCase().includes(lower)
+  );
+
     setFiltered(filtered);
   }, [search, movies]);
 
@@ -40,24 +61,36 @@ export function CatalogueMoviesPage() {
     open();
   };
 
-  const movieSlides = (images: string[], id?: number, title?: string) => 
-    (images.map((image) => (
-      <Carousel.Slide key={id}>
-        <Image 
-          src={image}
-          alt={title}
-        />
-      </Carousel.Slide>
-    )))
+  const genres = Array.from(new Set(movies.flatMap((m) => 
+    m.genre.split(", ").map(elem => elem.trim().toLowerCase())
+  ))).sort();
+
+  const years = Array.from(new Set(movies.map((m) => m.year))).sort();
 
   return (
+
     <Container>
-      <TextInput
-        placeholder="Поиск по названию или жанру"
-        value={search}
-        onChange={(event) => setSearch(event.currentTarget.value)}
-        mb="md"
-      />
+      <TextInput placeholder="Поиск по названию" value={search} onChange={(event) => setSearch(event.currentTarget.value)} mb="md" />
+      <Group mb="md" grow>
+        <MultiSelect
+          label="Жанр"
+          placeholder="Выберите жанр"
+          data={genres}
+          clearable
+          value={genresFilter}
+          onChange={setGenresFilter}
+          nothingFoundMessage="Фильмов с такими жанрами нет :("
+        />
+        <MultiSelect
+          label="Год"
+          placeholder="Выберите год"
+          data={years.map(String)}
+          clearable
+          value={yearsFilter}
+          onChange={setYearsFilter}
+          nothingFoundMessage="Фильмов с такими годами нет :("
+        />
+      </Group>
 
       {loading ? (
         <Loader />
@@ -70,40 +103,26 @@ export function CatalogueMoviesPage() {
             size='lg'
           >
             {selectedMovie && (
-              <div>
-                {selectedMovie.images && selectedMovie.images.length > 0 && (
-                  <Carousel
-                    height={300} 
-                    slideSize="100%"
-                    slideGap="md"
-                    withIndicators
-                    classNames={classes}
-                    emblaOptions={{
-                    loop: true,
-                    dragFree: false,
-                    align: 'center'
-                  }}
-                  >
-                    {movieSlides(selectedMovie.images, selectedMovie.id, selectedMovie.title)}
+              <>
+                {selectedMovie.images?.length > 0 && (
+                  <Carousel height={300} slideSize="100%" slideGap="md" withIndicators classNames={classes}>
+                    {selectedMovie.images.map((image, idx) => (
+                      <Carousel.Slide key={idx}>
+                        <Image src={image} alt={selectedMovie.title} />
+                      </Carousel.Slide>
+                    ))}
                   </Carousel>
                 )}
 
-                <RingProgress label={
-                  <Text size="xs" ta="center">
-                    {selectedMovie.imdb_rating || '0'}
-                  </Text>} 
-                  sections={[{value: Number(selectedMovie.imdb_rating) * 10 || 0, color: 'blue'}]} />
-
-                {selectedMovie.plot && (
-                  <Text mt="md">{selectedMovie.plot}</Text>
-                )}
+                <Rating value={Number(selectedMovie.imdb_rating)} readOnly />
+                <Text mt="md">{selectedMovie.plot}</Text>
                 <Text><strong>Жанр:</strong> {selectedMovie.genre || '-'}</Text>
-                <Text><strong>Год:</strong> {selectedMovie.year || '—'}</Text>
-                <Text><strong>Страна:</strong> {selectedMovie.country || '—'}</Text>
-                <Text><strong>Актёры:</strong> {selectedMovie.actors || '—'}</Text>
-                <Text><strong>Награды:</strong> {selectedMovie.awards || '—'}</Text>
-                <Text><strong>Продолжительность:</strong> {selectedMovie.runtime || '—'}</Text>
-              </div>
+                <Text><strong>Год:</strong> {selectedMovie.year || '-'}</Text>
+                <Text><strong>Страна:</strong> {selectedMovie.country || '-'}</Text>
+                <Text><strong>Актёры:</strong> {selectedMovie.actors || '-'}</Text>
+                <Text><strong>Награды:</strong> {selectedMovie.awards || '-'}</Text>
+                <Text><strong>Продолжительность:</strong> {selectedMovie.runtime || '-'}</Text>
+              </>
             )}
           </Modal>
 
@@ -111,52 +130,24 @@ export function CatalogueMoviesPage() {
             {filtered.map((movie) => (
               <motion.div
                 key={movie.id}
-                whileHover={{ 
-                  scale: 0.95,
-                  transition: { duration: 0.2 }
-                }}
+                whileHover={{ scale: 0.95, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleCardClick(movie)}
                 style={{ cursor: 'pointer' }}
               >
-                <Card
-                  shadow="sm"
-                  padding="lg"
-                  radius="md"
-                  ta="left"
-                  withBorder
-                >
+                <Card shadow="sm" padding="lg" radius="md" ta="left" withBorder>
                   {movie.poster && (
                     <Card.Section>
-                      <Image 
-                        src={movie.poster} 
-                        height={500} 
-                        alt={movie.title} 
-                      />
+                      <Image src={movie.poster} height={500} alt={movie.title} />
                     </Card.Section>
                   )}
                   
-                  <RingProgress label={
-                  <Text size="xs" ta="center">
-                    {movie.imdb_rating || '0'}
-                  </Text>} 
-                  sections={[{value: Number(movie.imdb_rating) * 10 || 0, color: 'blue'}]} />
+                  <Rating value={Number(movie.imdb_rating)} fractions={10} readOnly/>
 
-                  <Text w={500} size="lg" mt="md">
-                    {movie.title}
-                  </Text>
-                  
-                  <Text size="sm">
-                    Жанр: {movie.genre || '-'}
-                  </Text>
-                  
-                  <Text size="sm">
-                    Год: {movie.year || '-'}
-                  </Text>
-
-                  <Text size="sm">
-                    Продолжительность: {movie.runtime || '-'}
-                  </Text>
+                  <Text w={500} size="lg" mt="md">{movie.title}</Text>
+                  <Text size="sm">Жанр: {movie.genre || '-'}</Text>
+                  <Text size="sm">Год: {movie.year || '-'}</Text>
+                  <Text size="sm">Продолжительность: {movie.runtime || '-'}</Text>
                 </Card>
               </motion.div>
             ))}

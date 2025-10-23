@@ -1,0 +1,121 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "title": "Аватар",
+            "year": "2009",
+            "imdb_rating": "7.9",
+            "images": [
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMjEyOTYyMzUxNl5BMl5BanBnXkFtZTcwNTg0MTUzNA@@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BNzM2MDk3MTcyMV5BMl5BanBnXkFtZTcwNjg0MTUzNA@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2ODQ3NjMyMl5BMl5BanBnXkFtZTcwODg0MTUzNA@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxOTEwNDcxN15BMl5BanBnXkFtZTcwOTg0MTUzNA@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYxMDg1Nzk1MV5BMl5BanBnXkFtZTcwMDk0MTUzNA@@._V1_SX1500_CR0,0,1500,999_AL_.jpg"
+            ],
+            "genre": "Боевик, Приключения, Фэнтези",
+            "awards": "Выиграл 3 Оскара. Еще 80 побед и 121 номинация.",
+            "actors": "Сэм Уортингтон, Зои Салдана, Сигурни Уивер, Стивен Лэнг",
+            "country": "США, Великобритания",
+            "plot": "Парализованный морпех отправляется на луну Пандора для выполнения особой миссии, но оказывается перед выбором: следовать приказам или защищать мир, который он считает своим домом.",
+            "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/film/80/24183-1000x830.jpg",
+            "runtime": "2 часа 42 мин"
+        },
+        {
+            "id": 2,
+            "title": "Я - легенда",
+            "year": "2007",
+            "imdb_rating": "7.2",
+            "images": [
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTI0NTI4NjE3NV5BMl5BanBnXkFtZTYwMDA0Nzc4._V1_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTIwMDg2MDU4M15BMl5BanBnXkFtZTYwMTA0Nzc4._V1_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc5MDM1OTU5OV5BMl5BanBnXkFtZTYwMjA0Nzc4._V1_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0MTI2NjMzMzFeQTJeQWpwZ15BbWU2MDMwNDc3OA@@._V1_.jpg"
+            ],
+            "genre": "Драма, Ужасы, Научная фантастика",
+            "awards": "9 побед и 21 номинация.",
+            "actors": "Уилл Смит, Алиса Брага, Чарли Тахан, Салли Ричардсон-Уитфилд",
+            "country": "США",
+            "plot": "Спустя годы после того, как чума уничтожила большую часть человечества и превратила остальных в монстров, единственный выживший в Нью-Йорке отважно пытается найти лекарство.",
+            "poster": "https://m.media-amazon.com/images/M/MV5BMGE1OWZkZmItNmVhMC00YzAxLTgxOTctNjg3NWExM2RmOWJkXkEyXkFqcGc@._V1_.jpg",
+            "runtime": "1 час 41 мин"
+        },
+        {
+            "id": 3,
+            "title": "300 спартанцев",
+            "year": "2006",
+            "imdb_rating": "7.7",
+            "images": [
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNTg5MzMwMV5BMl5BanBnXkFtZTcwMzA2NTIyMw@@._V1_SX1777_CR0,0,1777,937_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTQwNTgyNTMzNF5BMl5BanBnXkFtZTcwNDA2NTIyMw@@._V1_SX1777_CR0,0,1777,935_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MjQzOTEwMV5BMl5BanBnXkFtZTcwMzE2NTIyMw@@._V1_SX1777_CR0,0,1777,947_AL_.jpg"
+            ],
+            "genre": "Боевик, Драма, Фэнтези",
+            "awards": "16 побед и 42 номинации.",
+            "actors": "Джерард Батлер, Лена Хиди, Доминик Уэст, Дэвид Уэнэм",
+            "country": "США",
+            "plot": "Царь Леонид Спартанский и отряд из 300 воинов сражаются с персами при Фермопилах в 480 году до нашей эры.",
+            "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/pos22/18/57850-1000x830.jpg",
+            "runtime": "1 час 57 мин"
+        },
+        {
+            "id": 4,
+            "title": "Мстители",
+            "year": "2012",
+            "imdb_rating": "8.1",
+            "images": [
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0NjY0NzE4OTReQTJeQWpwZ15BbWU3MDczODg2Nzc@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE1MzEzMjcyM15BMl5BanBnXkFtZTcwNDM4ODY3Nw@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMwMzM2MTg1M15BMl5BanBnXkFtZTcwNjM4ODY3Nw@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ4NzM2Mjc5MV5BMl5BanBnXkFtZTcwMTkwOTY3Nw@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc3MzQ3NjA5N15BMl5BanBnXkFtZTcwMzY5OTY3Nw@@._V1_SX1777_CR0,0,1777,999_AL_.jpg"
+            ],
+            "genre": "Боевик, Научная фантастика, Триллер",
+            "awards": "Номинация на 1 Оскар. Еще 34 победы и 75 номинаций.",
+            "actors": "Роберт Дауни-младший, Крис Эванс, Марк Руффало, Крис Хемсворт",
+            "country": "США",
+            "plot": "Самые могущественные герои Земли должны объединиться и научиться сражаться как команда, если они хотят остановить коварного Локи и его инопланетную армию от порабощения человечества.",
+            "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/film/87/6274-1000x830.jpg",
+            "runtime": "2 часа 23 мин"
+        },
+        {
+            "id": 5,
+            "title": "Волк с Уолл-стрит",
+            "year": "2013",
+            "imdb_rating": "8.2",
+            "images": [
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0NzAxODAyMl5BMl5BanBnXkFtZTgwMDg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTExMDk1MDE4NzVeQTJeQWpwZ15BbWU4MDM4NDM0ODAx._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTg3MTY4NDk4Nl5BMl5BanBnXkFtZTgwNjc0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTgzMTg4MDI0Ml5BMl5BanBnXkFtZTgwOTY0MzQ4MDE@._V1_SY1000_CR0,0,1553,1000_AL_.jpg"
+            ],
+            "genre": "Биография, Комедия, Криминал",
+            "awards": "Номинация на 5 Оскаров. Еще 35 побед и 154 номинации.",
+            "actors": "Леонардо ДиКаприо, Джона Хилл, Марго Робби, Мэттью Макконахи",
+            "country": "США",
+            "plot": "Основано на реальной истории Джордана Белфорта, от его взлета до богатого биржевого брокера, живущего на широкую ногу, до падения, связанного с преступностью, коррупцией и федеральным правительством.",
+            "poster": "https://poster4.me/wp-content/uploads/2020/01/volksuoltstrit.jpg",
+            "runtime": "3 часа 0 мин"
+        },
+        {
+            "id": 6,
+            "title": "Интерстеллар",
+            "year": "2014",
+            "imdb_rating": "8.6",
+            "images": [
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA3NTEwOTMxMV5BMl5BanBnXkFtZTgwMjMyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMzQ5ODE2MzEwM15BMl5BanBnXkFtZTgwMTMyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMTg4Njk4MzY0Nl5BMl5BanBnXkFtZTgwMzIyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BMzE3MTM0MTc3Ml5BMl5BanBnXkFtZTgwMDIyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/M/MV5BNjYzNjE2NDk3N15BMl5BanBnXkFtZTgwNzEyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg"
+            ],
+            "genre": "Приключения, Драма, Научная фантастика",
+            "awards": "Выиграл 1 Оскар. Еще 39 побед и 134 номинации.",
+            "actors": "Эллен Бёрстин, Мэттью Макконахи, Маккензи Фой, Джон Литгоу",
+            "country": "США, Великобритания",
+            "plot": "Команда исследователей путешествует через червоточину в космосе в попытке обеспечить выживание человечества.",
+            "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/film/81/16064-1000x830.jpg",
+            "runtime": "2 часа 49 мин"
+        }
+    ]
+}

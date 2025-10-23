@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Movie } from "../utils/types";
 
-const BASE_URL = "https://68ef9f33b06cc802829e20bc.mockapi.io/media-tracker";
+const BASE_URL = "http://localhost:3001";
 
 export const getMovies = () => axios
     .get(`${BASE_URL}/movies`)

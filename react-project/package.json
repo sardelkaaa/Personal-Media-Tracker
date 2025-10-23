@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server -w server/db.json -p 3001"
   },
   "dependencies": {
     "@mantine/carousel": "^8.3.3",
@@ -49,11 +51,13 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react-swc": "^3.9.0",
+    "concurrently": "^9.2.1",
     "dotenv": "^17.2.3",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "json-server": "^1.0.0-beta.3",
     "postcss": "^8.5.6",
     "postcss-loader": "^8.2.0",
     "postcss-preset-mantine": "^1.18.0",
