@@ -5,10 +5,10 @@ export type MobileNavigationProps = {
 };
 
 export type Movie = {
-  id?: number,
+  id: number,
   title: string;
-  year: String;
-  imdb_rating: string;
+  year: string;
+  imdb_rating: number;
   images: string[];
   genre: string;
   awards: string;

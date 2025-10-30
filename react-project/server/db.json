@@ -4,7 +4,7 @@
             "id": 1,
             "title": "Аватар",
             "year": "2009",
-            "imdb_rating": "7.9",
+            "imdb_rating": 7.9,
             "images": [
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMjEyOTYyMzUxNl5BMl5BanBnXkFtZTcwNTg0MTUzNA@@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
             "https://images-na.ssl-images-amazon.com/images/M/MV5BNzM2MDk3MTcyMV5BMl5BanBnXkFtZTcwNjg0MTUzNA@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
@@ -24,7 +24,7 @@
             "id": 2,
             "title": "Я - легенда",
             "year": "2007",
-            "imdb_rating": "7.2",
+            "imdb_rating": 7.2,
             "images": [
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMTI0NTI4NjE3NV5BMl5BanBnXkFtZTYwMDA0Nzc4._V1_.jpg",
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMTIwMDg2MDU4M15BMl5BanBnXkFtZTYwMTA0Nzc4._V1_.jpg",
@@ -43,7 +43,7 @@
             "id": 3,
             "title": "300 спартанцев",
             "year": "2006",
-            "imdb_rating": "7.7",
+            "imdb_rating": 7.7,
             "images": [
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNTg5MzMwMV5BMl5BanBnXkFtZTcwMzA2NTIyMw@@._V1_SX1777_CR0,0,1777,937_AL_.jpg",
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMTQwNTgyNTMzNF5BMl5BanBnXkFtZTcwNDA2NTIyMw@@._V1_SX1777_CR0,0,1777,935_AL_.jpg",
@@ -61,7 +61,7 @@
             "id": 4,
             "title": "Мстители",
             "year": "2012",
-            "imdb_rating": "8.1",
+            "imdb_rating": 8.1,
             "images": [
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0NjY0NzE4OTReQTJeQWpwZ15BbWU3MDczODg2Nzc@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE1MzEzMjcyM15BMl5BanBnXkFtZTcwNDM4ODY3Nw@@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
@@ -81,7 +81,7 @@
             "id": 5,
             "title": "Волк с Уолл-стрит",
             "year": "2013",
-            "imdb_rating": "8.2",
+            "imdb_rating": 8.2,
             "images": [
             "https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0NzAxODAyMl5BMl5BanBnXkFtZTgwMDg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
@@ -101,7 +101,7 @@
             "id": 6,
             "title": "Интерстеллар",
             "year": "2014",
-            "imdb_rating": "8.6",
+            "imdb_rating": 8.6,
             "images": [
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA3NTEwOTMxMV5BMl5BanBnXkFtZTgwMjMyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
             "https://images-na.ssl-images-amazon.com/images/M/MV5BMzQ5ODE2MzEwM15BMl5BanBnXkFtZTgwMTMyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",

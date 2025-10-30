@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Anchor, Flex, Burger, Group, Menu, Drawer, Stack, AppShell } from "@mantine/core";
+import React from "react";
+import { Anchor, Flex, Burger, Menu, Drawer } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { IconHome2, IconLayoutDashboard, IconMovie, IconUserCircle } from '@tabler/icons-react';
 import type { MobileNavigationProps } from "../../utils/types";
 
@@ -17,8 +17,8 @@ const NavigationItems = [
             icon: IconLayoutDashboard
         },
         {
-            label: "Каталог фильмов",
-            path: "/catalogue_movies",
+            label: "Каталог фильмов и сериалов",
+            path: "/catalogue",
             icon: IconMovie
         },
         {
@@ -69,8 +69,8 @@ export const Navigation = () => {
 
     return (
         <>
-               {!isMobile && <DesktopNavigation />}
-               {isMobile && <MobileNavigation opened={opened} toggle={toggle} close={close} />}
+            {!isMobile && <DesktopNavigation />}
+            {isMobile && <MobileNavigation opened={opened} toggle={toggle} close={close} />}
         </>
     );
 }
