@@ -12,11 +12,11 @@ export const getMovieById = (id: number) : Promise<Movie> =>
     .then(res => res.data)
     .catch(error => console.log(error));
 
-export const createMovie = (movie: Movie) => 
-    axios.post(`${BASE_URL}/movies`, movie)
-    .then(res => console.log(res))
-    .catch(error => console.log(error));
+// export const createMovie = (movie: Movie) => 
+//     axios.post(`${BASE_URL}/movies`, movie)
+//     .then(res => console.log(res))
+//     .catch(error => console.log(error));
 
-export const updateMovie = (id: number, data: Movie) => axios.put(`${BASE_URL}/movies/${id}`, data);
+// export const updateMovie =
 
-export const deleteMovie = (id: number) => axios.delete(`${BASE_URL}/movies/${id}`);
+// export const deleteMovie = ;
