@@ -4,8 +4,8 @@ export type MobileNavigationProps = {
   close: () => void;
 };
 
-export type Movie = {
-  id: number,
+interface BaseMedia {
+  id: number;
   title: string;
   year: string;
   imdb_rating: number;
@@ -18,3 +18,10 @@ export type Movie = {
   poster: string;
   runtime: string;
 }
+
+export type Movie = BaseMedia;
+
+export type TVSeries = BaseMedia & {
+  totalSeasons?: number;
+  comingSoon?: boolean;
+};

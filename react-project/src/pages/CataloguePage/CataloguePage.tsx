@@ -7,6 +7,7 @@ import { useMovies } from '../../hooks/useMovies';
 import classes from './CataloguePage.module.css';
 import type { Movie } from '../../utils/types';
 import { IconFilter, IconCirclePlus } from '@tabler/icons-react';
+import { AddMediaForm } from '../../components/AddMediaForm/AddMediaForm';
 
 export function CataloguePage() {
   const { data: movies = [], isLoading, isError } = useMovies();
@@ -76,12 +77,16 @@ export function CataloguePage() {
         </Button>
       </Flex>
 
-      <Modal 
+    
+      <AddMediaForm 
         opened={addMovieOpened} 
         onClose={closeAddMovie} 
         title="Добавить свой фильм или сериал" 
         size="lg"
-      ></Modal>
+        mediaType='movie'
+        onSubmit={(movie) => console.log('Новый фильм добавлен:', movie)}
+        />
+    
 
       <Flex justify="space-between" mb="xl" w="100%">
         <TextInput 
