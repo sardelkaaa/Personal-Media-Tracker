@@ -61,7 +61,13 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
 
     try {
       let movieId: number;
-      movieId = await getLastMovieId();
+      let movieIdProm: number | void;
+      movieIdProm = await getLastMovieId();
+      if ((typeof(movieIdProm)) === 'number') {
+        movieId = movieIdProm + 1;
+      } else {
+        movieId = 1;
+      }
 
       const mediaData = {
         id: movieId,

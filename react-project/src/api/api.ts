@@ -14,9 +14,13 @@ export const getMovieById = (id: number) : Promise<Movie> =>
     .catch(error => console.log(error));
 
 
-export const getLastMovieId = (): Promise<number> =>
-    axios.get(`${BASE_URL}/movies?_sort=id&_order=desc&_limit=1`)
-    .then(res => res.data[0].id)
+export const getLastMovieId = (): Promise<number | void> =>
+    axios.get(`${BASE_URL}/movies`)
+    .then(res => {
+        const movies = res.data;
+        const lastMovie = movies[movies.length - 1];
+        return parseInt(lastMovie.id);
+    })
     .catch(error => console.log(error));
 
 export const addMovie = (movieData: Movie): Promise<Movie> => axios

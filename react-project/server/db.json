@@ -118,21 +118,18 @@
       "runtime": "2 часа 49 мин"
     },
     {
-      "id": "1",
-      "title": "Джентльмены",
-      "year": "2019",
-      "imdb_rating": 9,
-      "images": [
-        "https://b1.filmpro.ru/c/822854.700xp.jpg",
-        "https://s6.stc.all.kpcdn.net/putevoditel/serialy/wp-content/uploads/2022/03/dzhentlmeny-stil-novogo-filma-gaya-rich-1024x512.jpg"
-      ],
-      "genre": "Комедия",
+      "id": 7,
+      "title": "fg",
+      "year": "2024",
+      "imdb_rating": 0,
+      "images": [],
+      "genre": "fdfgdf",
       "awards": "",
-      "actors": "Макконахи",
-      "country": "США",
-      "plot": "Криминальная комедия",
-      "poster": "https://www.timeout.ru/wp-content/uploads/kpposters/1143242_16.jpg",
-      "runtime": "2ч"
+      "actors": "fdf",
+      "country": "dfg",
+      "plot": "fdgdffddghfgh",
+      "poster": "https://upload.wikimedia.org/wikipedia/ru/c/c1/%D0%94%D0%B6%D0%B5%D0%BD%D1%82%D0%BB%D1%8C%D0%BC%D0%B5%D0%BD%D1%8B.jpg",
+      "runtime": "45"
     }
   ]
 }
