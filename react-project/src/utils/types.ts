@@ -25,3 +25,5 @@ export type TVSeries = BaseMedia & {
   totalSeasons?: number;
   comingSoon?: boolean;
 };
+
+export type MediaType = 'movie' | 'tvseries';

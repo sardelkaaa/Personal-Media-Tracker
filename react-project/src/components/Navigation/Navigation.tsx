@@ -17,8 +17,13 @@ const NavigationItems = [
             icon: IconLayoutDashboard
         },
         {
-            label: "Каталог фильмов и сериалов",
-            path: "/catalogue",
+            label: "Каталог фильмов",
+            path: "/movies_catalogue",
+            icon: IconMovie
+        },
+        {
+            label: "Каталог сериалов",
+            path: "/series_catalogue",
             icon: IconMovie
         },
         {

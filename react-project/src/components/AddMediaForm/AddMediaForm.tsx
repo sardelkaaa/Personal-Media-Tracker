@@ -1,10 +1,8 @@
 import { Button, Modal, TextInput, NumberInput, Textarea, Group, Checkbox } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { type Movie, type TVSeries } from '../../utils/types';
+import { type MediaType, type Movie, type TVSeries } from '../../utils/types';
 import { useState } from 'react';
 import { addMovie, getLastMovieId, addTVSeries } from '../../api/api';
-
-type MediaType = 'movie' | 'tvseries';
 
 interface AddMediaFormProps {
   opened: boolean;
