@@ -7,9 +7,18 @@ export const getMovies = () => axios
     .get(`${BASE_URL}/movies`)
     .then(res => res.data);
 
+export const getTvSeries = () => axios
+    .get(`${BASE_URL}/tvseries`)
+    .then(res => res.data);
+
 
 export const getMovieById = (id: number) : Promise<Movie> => 
     axios.get(`${BASE_URL}/movies/${id}`)
+    .then(res => res.data)
+    .catch(error => console.log(error));
+
+export const getTvSeriesById = (id: number) : Promise<TVSeries> => 
+    axios.get(`${BASE_URL}/tvseries/${id}`)
     .then(res => res.data)
     .catch(error => console.log(error));
 
@@ -23,13 +32,23 @@ export const getLastMovieId = (): Promise<number | void> =>
     })
     .catch(error => console.log(error));
 
+export const getLastTvSeriesId = (): Promise<number | void> =>
+    axios.get(`${BASE_URL}/tvseries`)
+    .then(res => {
+        const tvseries = res.data;
+        const lastTvSeries = tvseries[tvseries.length - 1];
+        return parseInt(lastTvSeries.id);
+    })
+    .catch(error => console.log(error));
+
+
 export const addMovie = (movieData: Movie): Promise<Movie> => axios
     .post(`${BASE_URL}/movies`, movieData)
     .then(res => res.data)
     .catch(error => console.log(error));
 
-export const addTVSeries = (tvSeriesData: TVSeries): Promise<TVSeries> => axios
-    .post(`${BASE_URL}/tvSeries`, tvSeriesData)
+export const addTvSeries = (tvSeriesData: TVSeries): Promise<TVSeries> => axios
+    .post(`${BASE_URL}/tvseries`, tvSeriesData)
     .then(res => res.data)
     .catch(error => console.log(error));
     

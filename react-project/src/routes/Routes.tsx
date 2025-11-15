@@ -4,7 +4,7 @@ import { HomePage } from "../pages/HomePage/HomePage";
 import { MoviesCataloguePage } from "../pages/MoviesCataloguePage/MoviesCataloguePage";
 import { ProfilePage } from "../pages/ProfilePage/ProfilePage";
 import { DashboardPage } from "../pages/DashboardPage/DashboardPage";
-import { SeriesCataloguePage } from "../pages/SeriesCataloguePage/SeriesCataloguePage";
+import { TvSeriesCataloguePage } from "../pages/TvSeriesCataloguePage/TvSeriesCataloguePage";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "movies_catalogue", element: <MoviesCataloguePage /> },
-      { path: "series_catalogue", element: <SeriesCataloguePage /> },
+      { path: "tvseries_catalogue", element: <TvSeriesCataloguePage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "dashboard", element: <DashboardPage /> },
     ],

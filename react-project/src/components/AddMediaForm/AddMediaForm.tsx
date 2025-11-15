@@ -2,7 +2,7 @@ import { Button, Modal, TextInput, NumberInput, Textarea, Group, Checkbox } from
 import { useForm } from '@mantine/form';
 import { type MediaType, type Movie, type TVSeries } from '../../utils/types';
 import { useState } from 'react';
-import { addMovie, getLastMovieId, addTVSeries } from '../../api/api';
+import { addMovie, getLastMovieId, addTvSeries, getLastTvSeriesId } from '../../api/api';
 
 interface AddMediaFormProps {
   opened: boolean;
@@ -58,17 +58,18 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
     setError(null);
 
     try {
-      let movieId: number;
-      let movieIdProm: number | void;
-      movieIdProm = await getLastMovieId();
-      if ((typeof(movieIdProm)) === 'number') {
-        movieId = movieIdProm + 1;
+    
+
+      let mediaId: number;
+      const mediaIdProm: number | void = mediaType == "movie" ? await getLastMovieId() : await getLastTvSeriesId();
+      if ((typeof(mediaIdProm)) === 'number') {
+        mediaId = mediaIdProm + 1;
       } else {
-        movieId = 1;
-      }
+        mediaId = 1;
+      };
 
       const mediaData = {
-        id: movieId,
+        id: mediaId,
         title: values.title,
         year: values.year,
         imdb_rating: values.imdb_rating,
@@ -93,7 +94,7 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
       if (mediaType === 'movie') {
         savedMedia = await addMovie(mediaData);
       } else {
-        savedMedia = await addTVSeries(mediaData);
+        savedMedia = await addTvSeries(mediaData);
       }
 
       onSubmit(savedMedia);

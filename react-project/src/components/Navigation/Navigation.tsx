@@ -23,7 +23,7 @@ const NavigationItems = [
         },
         {
             label: "Каталог сериалов",
-            path: "/series_catalogue",
+            path: "/tvseries_catalogue",
             icon: IconMovie
         },
         {
