@@ -79,7 +79,7 @@ export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDe
           </Menu>
         )}
 
-        {isOwner && onDelete && (
+        {currentUser && isOwner && onDelete && (
           <Button
             color="red"
             variant="outline"
