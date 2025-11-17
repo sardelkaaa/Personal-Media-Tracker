@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getMovies } from '../api/api';
+import { getMovies } from '../api/moviesAndTVSeries';
 import type { Movie } from '../utils/types';
 
 export const useMovies = () => {

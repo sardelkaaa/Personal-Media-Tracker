@@ -1,8 +1,9 @@
 import { Button, Modal, TextInput, NumberInput, Textarea, Group, Checkbox } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { type MediaType, type Movie, type TVSeries } from '../../utils/types';
 import { useState } from 'react';
-import { addMovie, getLastMovieId, addTvSeries, getLastTvSeriesId } from '../../api/api';
+import type { MediaType, Movie, TVSeries, User } from '../../utils/types';
+import { addMovie, addTvSeries, getLastMovieId, getLastTvSeriesId } from '../../api/moviesAndTVSeries';
+import { notifications } from '@mantine/notifications';
 
 interface AddMediaFormProps {
   opened: boolean;
@@ -15,12 +16,12 @@ interface AddMediaFormProps {
 
 export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit }: AddMediaFormProps) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | string>(null);
 
+  const storedUser = localStorage.getItem('authUser');
+  const currentUser: User | null = storedUser ? JSON.parse(storedUser) : null;
 
   const form = useForm({
     initialValues: {
-      id: '',
       title: '',
       year: '',
       imdb_rating: 0,
@@ -35,41 +36,35 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
       totalSeasons: 1,
       comingSoon: false,
     },
-
-    validate: {
-      title: (value) => value.trim().length < 2 ? 'Название должно быть не менее 2 символов' : null,
-      year: (value) => !/^\d{4}$/.test(value) ? 'Год должен быть в формате YYYY' : null,
-      imdb_rating: (value) => value < 0 || value > 10 ? 'Рейтинг должен быть от 0 до 10' : null,
-      genre: (value) => value.trim().length === 0 ? 'Укажите жанр' : null,
-      country: (value) => value.trim().length === 0 ? 'Укажите страну' : null,
-      plot: (value) => value.trim().length < 10 ? 'Описание должно быть не менее 10 символов' : null,
-      poster: (value) => value.trim().length === 0 ? 'Укажите ссылку на постер' : null,
-      runtime: (value) => value.trim().length === 0 ? 'Укажите продолжительность' : null,
-      totalSeasons: (value) => mediaType === 'tvseries' && value < 1 ? 'Количество сезонов должно быть не менее 1' : null,
-    },
-
     validateInputOnBlur: true,
     validateInputOnChange: true,
+    validate: {
+      title: (v) => v.trim().length < 2 ? 'Название должно быть не менее 2 символов' : null,
+      year: (v) => !/^\d{4}$/.test(v) ? 'Год должен быть в формате YYYY' : null,
+      imdb_rating: (v) => v < 0 || v > 10 ? 'Рейтинг должен быть от 0 до 10' : null,
+      genre: (v) => v.trim().length === 0 ? 'Укажите жанр' : null,
+      country: (v) => v.trim().length === 0 ? 'Укажите страну' : null,
+      plot: (v) => v.trim().length < 10 ? 'Описание должно быть не менее 10 символов' : null,
+      poster: (v) => v.trim().length === 0 ? 'Укажите ссылку на постер' : null,
+      runtime: (v) => v.trim().length === 0 ? 'Укажите продолжительность' : null,
+      totalSeasons: (v) => mediaType === 'tvseries' && v < 1 ? 'Количество сезонов должно быть не менее 1' : null,
+    },
   });
 
-
   const handleSubmit = async (values: typeof form.values) => {
+    if (!currentUser) {
+      notifications.show({ title: 'Ошибка', message: 'Вы должны быть авторизованы', color: 'red' });
+      return;
+    }
+
     setLoading(true);
-    setError(null);
 
     try {
-    
-
-      let mediaId: number;
-      const mediaIdProm: number | void = mediaType == "movie" ? await getLastMovieId() : await getLastTvSeriesId();
-      if ((typeof(mediaIdProm)) === 'number') {
-        mediaId = mediaIdProm + 1;
-      } else {
-        mediaId = 1;
-      };
+      const lastId = mediaType === 'movie' ? await getLastMovieId() : await getLastTvSeriesId();
 
       const mediaData = {
-        id: mediaId,
+        id: (lastId ? lastId + 1 : 1).toString(),
+        userId: currentUser.id,
         title: values.title,
         year: values.year,
         imdb_rating: values.imdb_rating,
@@ -82,14 +77,12 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
         poster: values.poster,
         runtime: values.runtime,
         ...(mediaType === 'tvseries' && {
-        totalSeasons: values.totalSeasons,
-        comingSoon: values.comingSoon,
+          totalSeasons: values.totalSeasons,
+          comingSoon: values.comingSoon,
         }),
       };
 
-      
       let savedMedia: Movie | TVSeries;
-
 
       if (mediaType === 'movie') {
         savedMedia = await addMovie(mediaData);
@@ -97,145 +90,47 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
         savedMedia = await addTvSeries(mediaData);
       }
 
+      notifications.show({ title: 'Успешно', message: 'Медиа добавлено', color: 'green' });
       onSubmit(savedMedia);
       form.reset();
       onClose();
 
-    } catch(err) {
-      setError('Ошибка отправки');
+    } catch (err) {
+      notifications.show({ title: 'Ошибка', message: 'Не удалось добавить медиа', color: 'red' });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Modal
-      opened={opened}
-      onClose={onClose}
-      title={title}
-      size={size}
-    >
+    <Modal opened={opened} onClose={onClose} title={title} size={size}>
       <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
-        {}
-        <TextInput
-          {...form.getInputProps('title')}
-          label="Название"
-          placeholder="Введите название"
-          mb="md"
-          required
-        />
-
-        <TextInput
-          {...form.getInputProps('year')}
-          label="Год выпуска"
-          placeholder="2024"
-          mb="md"
-          required
-        />
-
-        <NumberInput
-          {...form.getInputProps('imdb_rating')}
-          label="Рейтинг IMDB"
-          placeholder="7.5"
-          min={0}
-          max={10}
-          step={0.1}
-          mb="md"
-        />
-
-        <TextInput
-          {...form.getInputProps('genre')}
-          label="Жанр"
-          placeholder="Драма, Комедия и т.д."
-          mb="md"
-          required
-        />
-
-        <TextInput
-          {...form.getInputProps('country')}
-          label="Страна"
-          placeholder="США, Россия и т.д."
-          mb="md"
-          required
-        />
-
-        <TextInput
-          {...form.getInputProps('actors')}
-          label="Актеры"
-          placeholder="Имена актеров через запятую"
-          mb="md"
-        />
-
-        <Textarea
-          {...form.getInputProps('plot')}
-          label="Описание"
-          placeholder="Краткое описание сюжета"
-          mb="md"
-          required
-          minRows={3}
-        />
-
-        <TextInput
-          {...form.getInputProps('poster')}
-          label="Постер (URL)"
-          placeholder="https://example.com/poster.jpg"
-          mb="md"
-          required
-        />
-
-        <TextInput
-          {...form.getInputProps('runtime')}
-          label="Продолжительность"
-          placeholder={mediaType === 'movie' ? "2ч 30м" : "45м (на серию)"}
-          mb="md"
-          required
-        />
+        <TextInput {...form.getInputProps('title')} label="Название" placeholder="Введите название" mb="md" required />
+        <TextInput {...form.getInputProps('year')} label="Год выпуска" placeholder="2024" mb="md" required />
+        <NumberInput {...form.getInputProps('imdb_rating')} label="Рейтинг IMDB" placeholder="7.5" min={0} max={10} step={0.1} mb="md" />
+        <TextInput {...form.getInputProps('genre')} label="Жанр" placeholder="Драма, Комедия" mb="md" required />
+        <TextInput {...form.getInputProps('country')} label="Страна" placeholder="США, Россия" mb="md" required />
+        <TextInput {...form.getInputProps('actors')} label="Актеры" placeholder="Имена через запятую" mb="md" />
+        <Textarea {...form.getInputProps('plot')} label="Описание" placeholder="Краткое описание сюжета" mb="md" required minRows={3} />
+        <TextInput {...form.getInputProps('poster')} label="Постер (URL)" placeholder="https://example.com/poster.jpg" mb="md" required />
+        <TextInput {...form.getInputProps('runtime')} label="Продолжительность" placeholder={mediaType === 'movie' ? "2ч 30м" : "45м (на серию)"} mb="md" required />
 
         {mediaType === 'tvseries' && (
           <Group grow mb="md">
-            <NumberInput
-              {...form.getInputProps('totalSeasons')}
-              label="Количество сезонов"
-              placeholder="1"
-              min={1}
-              max={50}
-            />
-            <Checkbox
-              {...form.getInputProps('comingSoon', { type: 'checkbox' })}
-              label="Скоро выйдет"
-              mt="xl"
-            />
+            <NumberInput {...form.getInputProps('totalSeasons')} label="Количество сезонов" placeholder="1" min={1} max={50} />
+            <Checkbox {...form.getInputProps('comingSoon', { type: 'checkbox' })} label="Скоро выйдет" mt="xl" />
           </Group>
         )}
 
-        <TextInput
-          {...form.getInputProps('awards')}
-          label="Награды"
-          placeholder="Оскар, Золотой глобус и т.д."
-          mb="md"
-        />
-
         {form.values.images.map((image, index) => (
-          <TextInput
-            key={index}
-            {...form.getInputProps(`images.${index}`)}
-            label={index === 0 ? "Изображения" : ""}
-            placeholder="URL изображения"
-            mb="xs"
-          />
+          <TextInput key={index} {...form.getInputProps(`images.${index}`)} label={index === 0 ? "Изображения" : ""} placeholder="URL изображения" mb="xs" />
         ))}
 
-        <Button 
-          type="button" 
-          onClick={() => form.insertListItem('images', '')}
-          variant="outline"
-          mb="md"
-          size="xs"
-        >
+        <Button type="button" onClick={() => form.insertListItem('images', '')} variant="outline" mb="md" size="xs">
           + Добавить изображение
         </Button>
 
-        <Button type="submit" fullWidth>
+        <Button type="submit" fullWidth loading={loading}>
           {mediaType === 'movie' ? 'Добавить фильм' : 'Добавить сериал'}
         </Button>
       </form>

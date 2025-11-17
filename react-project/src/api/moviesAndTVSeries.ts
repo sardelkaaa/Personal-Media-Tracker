@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Movie, TVSeries } from "../utils/types";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3000";
 
 export const getMovies = () => axios
     .get(`${BASE_URL}/movies`)
@@ -51,4 +51,6 @@ export const addTvSeries = (tvSeriesData: TVSeries): Promise<TVSeries> => axios
     .post(`${BASE_URL}/tvseries`, tvSeriesData)
     .then(res => res.data)
     .catch(error => console.log(error));
-    
+
+export const deleteMovie = (id: string) => axios.delete(`${BASE_URL}/movies/${id}`);
+export const deleteTvSeries = (id: string) => axios.delete(`${BASE_URL}/tvseries/${id}`);

@@ -119,6 +119,180 @@
     }
   ],
   "tvseries": [
-    
+    {
+      "id": "1",
+      "title": "Игра престолов",
+      "year": "2011–2019",
+      "imdb_rating": 9.5,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BNDc1MGUyNzItNWRkOC00MjM1LWJjNjMtZTZlYWIxMGRmYzVlXkEyXkFqcGdeQXVyMzU3MDEyNjk@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BZjZkN2M5ODgtMjQ2OC00ZjAxLWE1MjMtZDE0OTNmNGM0NWEwXkEyXkFqcGdeQXVyNjUxNzgwNTE@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMDk4Y2Y1MDAtNGVmMC00ZTlhLTlmMmQtYjcyN2VkNzUzZjg2XkEyXkFqcGdeQXVyNjUxNzgwNTE@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BNjZjNWIzMzQtZWZjYy00ZTkwLWJiMTYtOWRkZDBhNWJhY2JmXkEyXkFqcGdeQXVyMjk3NTUyOTc@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BNTMyMTRjZWEtM2UxMS00ZjU5LWIxMTYtZDA5YmJhZmRjYTc4XkEyXkFqcGdeQXVyMjk3NTUyOTc@._V1_SX1777_CR0,0,1777,999_AL_.jpg"
+      ],
+      "genre": "Приключения, Драма, Фэнтези",
+      "awards": "Выиграл 1 «Золотой глобус». Ещё 185 побед и 334 номинации.",
+      "actors": "Питер Динклэйдж, Лина Хиди, Эмилия Кларк, Кит Харингтон",
+      "country": "США, Великобритания",
+      "plot": "Пока между несколькими благородными семьями в Вестеросе назревает гражданская война, дети бывших правителей пытаются вернуть себе власть. Между тем забытая раса, жаждущая уничтожения, планирует возвращение с Севера.",
+      "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/film/89/4947-1000x830.jpg",
+      "runtime": "56 мин",
+      "totalSeasons": 8,
+      "coming_soon": false
+    },
+    {
+      "id": "2",
+      "title": "Викинги",
+      "year": "2013–2020",
+      "imdb_rating": 8.6,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5MTM1ODUxNV5BMl5BanBnXkFtZTgwNTAzOTI2ODE@._V1_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BNzU2NDcxODMyOF5BMl5BanBnXkFtZTgwNDAzOTI2ODE@._V1_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMzMzIzOTU2M15BMl5BanBnXkFtZTgwODMzMTkyODE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ2NTQ2MDA3NF5BMl5BanBnXkFtZTgwODkxMDUxODE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTcxOTQ3NTA5N15BMl5BanBnXkFtZTgwMzExMDUxODE@._V1_SY1000_SX1500_AL_.jpg"
+      ],
+      "genre": "Экшен, Драма, История",
+      "awards": "Номинация на 7 премий «Эмми». Ещё 17 побед и 49 номинаций.",
+      "actors": "Трэвис Фиммел, Клайв Стэнден, Густаф Скарсгард, Кэтрин Винник",
+      "country": "Ирландия, Канада",
+      "plot": "Мир викингов оживает через историю Рагнара Лодброка, легендарного вождя, и его семьи.",
+      "poster": "https://www.kino-teatr.ru/movie/poster/108923/79399.jpg",
+      "runtime": "44 мин",
+      "totalSeasons": 6,
+      "coming_soon": false
+    },
+    {
+      "id": "3",
+      "title": "Готэм",
+      "year": "2014–2019",
+      "imdb_rating": 8,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BNDI3ODYyODY4OV5BMl5BanBnXkFtZTgwNjE5NDMwMDI@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5OTExMTIwNF5BMl5BanBnXkFtZTgwMjI5NDMwMDI@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA3MDY2NjA3MzBeQTJeQWpwZ15BbWU4MDU0MDkzODgx._V1_SX1499_CR0,0,1499,999_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjM3MzYzNDgzOV5BMl5BanBnXkFtZTgwMjQwOTM4ODE@._V1_SY1000_CR0,0,1498,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQwODAyNjk0NF5BMl5BanBnXkFtZTgwODU4MzMyODE@._V1_SY1000_CR0,0,1500,1000_AL_.jpg"
+      ],
+      "genre": "Экшен, Криминал, Драма",
+      "awards": "Номинация на 4 премии «Эмми». Ещё 3 победы и 22 номинации.",
+      "actors": "Бен МакКензи, Донал Лог, Дэвид Мазуз, Шон Пертви",
+      "country": "США",
+      "plot": "История становления детектива Джима Гордона и ранние годы Готэма до появления Бэтмена.",
+      "poster": "https://basket-09.wbbasket.ru/vol1176/part117674/117674996/images/big/1.webp",
+      "runtime": "42 мин",
+      "totalSeasons": 5,
+      "coming_soon": false
+    },
+    {
+      "id": "4",
+      "title": "Власть в ночном городе",
+      "year": "2014–2020",
+      "imdb_rating": 8,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2ODg0MzMzM15BMl5BanBnXkFtZTgwODYxODA5NTE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyMjA0MzczNV5BMl5BanBnXkFtZTgwNTIyODA9NTE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTk0MTI0NzQ2NV5BMl5BanBnXkFtZTgwMDkxODA5NTE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ4Mzk1ODcxM15BMl5BanBnXkFtZTgwNDQyODA5NTE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwNTE0NDI1M15BMl5BanBnXkFtZTgwMDQyODA5NTE@._V1_SY1000_SX1500_AL_.jpg"
+      ],
+      "genre": "Криминал, Драма",
+      "awards": "1 победа и 6 номинаций.",
+      "actors": "Омари Хардвик, Джозеф Сикора, Энди Бин, Лела Лорен",
+      "country": "США",
+      "plot": "Джеймс «Призрак» Сент-Патрик — владелец ночного клуба в Нью-Йорке, ведущий двойную жизнь как наркобосс.",
+      "poster": "https://www.kino-teatr.ru/movie/posters/big/6/6/111366.jpg",
+      "runtime": "50 мин",
+      "totalSeasons": 6,
+      "coming_soon": false
+    },
+    {
+      "id": "5",
+      "title": "Нарко",
+      "year": "2015–2017",
+      "imdb_rating": 8.9,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTk2MDMzMTc0MF5BMl5BanBnXkFtZTgwMTAyMzA1OTE@._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjIxMDkyOTEyNV5BMl5BanBnXkFtZTgwNjY3Mjc3OTE@._V1_SY1000_SX1500_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA2NDUwMTU2NV5BMl5BanBnXkFtZTgwNTI1Mzc3OTE@._V1_SY1000_CR0,0,1499,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BODA1NjAyMTQ3Ml5BMl5BanBnXkFtZTgwNjI1Mzc3OTE@._V1_SY1000_CR0,0,1499,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU0NzQ0OTAwNl5BMl5BanBnXkFtZTgwMDAyMzA1OTE@._V1_SX1500_CR0,0,1500,999_AL_.jpg"
+      ],
+      "genre": "Биография, Криминал, Драма",
+      "awards": "Номинация на 2 «Золотых глобуса». Ещё 4 номинации.",
+      "actors": "Вагнер Моура, Бойд Холбрук, Педро Паскаль, Джоанна Кристи",
+      "country": "США / Колумбия",
+      "plot": "Хроника преступной карьеры колумбийского наркобарона Пабло Эскобара и сил, пытающихся его остановить.",
+      "poster": "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/e7702b36-99f7-4072-ac09-e4c733f190a2/orig",
+      "runtime": "49 мин",
+      "totalSeasons": 3,
+      "coming_soon": false
+    },
+    {
+      "id": "6",
+      "title": "Во все тяжкие",
+      "year": "2008–2013",
+      "imdb_rating": 9.5,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTgyMzI5NDc5Nl5BMl5BanBnXkFtZTgwMjM0MTI2MDE@._V1_SY1000_CR0,0,1498,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ2NDkwNDk5NV5BMl5BanBnXkFtZTgwNDM0MTI2MDE@._V1_SY1000_CR0,0,1495,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTM4NDcyNDMzMF5BMl5BanBnXkFtZTgwOTI0MTI2MDE@._V1_SY1000_CR0,0,1495,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTAzMTczMjM3NjFeQTJeQWpwZ15BbWU4MDc1MTI1MzAx._V1_SY1000_CR0,0,1495,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5MTE3MTgwMF5BMl5BanBnXkFtZTgwOTQxMjUzMDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg"
+      ],
+      "genre": "Криминал, Драма, Триллер",
+      "awards": "16 премий «Эмми» и многие другие.",
+      "actors": "Брайан Крэнстон, Анна Ганн, Аарон Пол, Дин Норрис",
+      "country": "США",
+      "plot": "Учитель химии Уолтер Уайт, узнав о своей смертельной болезни, начинает производить метамфетамин, чтобы обеспечить финансовое будущее своей семьи.",
+      "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/film/81/15832-1000x830.jpg",
+      "runtime": "45–55 мин",
+      "totalSeasons": 5,
+      "coming_soon": false
+    },
+    {
+      "id": "7",
+      "title": "Люк Кейдж",
+      "year": "2016–2018",
+      "imdb_rating": 7.9,
+      "images": [
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMxNjc1NjI0NV5BMl5BanBnXkFtZTgwNzA0NzY0ODE@._V1_SY1000_CR0,0,1497,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjI1MDg3NjY2OF5BMl5BanBnXkFtZTgwNDE1NDU4OTE@._V1_SY1000_CR0,0,1497,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BOTYzOTQyNDYxNl5BMl5BanBnXkFtZTgwNzA1NDU4OTE@._V1_SY1000_CR0,0,1498,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMTgxMjA3MTQ5Ml5BMl5BanBnXkFtZTgwOTA1NDU4OTE@._V1_SY1000_CR0,0,1498,1000_AL_.jpg",
+        "https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyNjg5ODYwNF5BMl5BanBnXkFtZTgwMTE1NDU4OTE@._V1_SY1000_CR0,0,1477,1000_AL_.jpg"
+      ],
+      "genre": "Экшен, Криминал, Драма",
+      "awards": "–",
+      "actors": "Махершала Али, Майк Колтер, Фрэнки Фэйсон, Эрик ЛаРей Харви",
+      "country": "США",
+      "plot": "После эксперимента Люк Кейдж приобретает суперсилу и неуязвимость, но это тянет за собой ответственность и опасности.",
+      "poster": "https://upload.wikimedia.org/wikipedia/ru/3/37/Luke_Cage_season_1_poster.jpeg",
+      "runtime": "55 мин",
+      "totalSeasons": 2,
+      "coming_soon": false
+    }
+  ],
+  "users": [
+    {
+      "id": "2668",
+      "email": "123@GMAIL.COM",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "name": "123",
+      "collections": {
+        "watching": [
+          "1"
+        ],
+        "wantToWatch": [],
+        "watched": [
+          "4"
+        ],
+        "favorite": [
+          "5"
+        ]
+      }
+    }
   ]
 }

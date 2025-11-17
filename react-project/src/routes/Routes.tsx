@@ -5,6 +5,10 @@ import { MoviesCataloguePage } from "../pages/MoviesCataloguePage/MoviesCatalogu
 import { ProfilePage } from "../pages/ProfilePage/ProfilePage";
 import { DashboardPage } from "../pages/DashboardPage/DashboardPage";
 import { TvSeriesCataloguePage } from "../pages/TvSeriesCataloguePage/TvSeriesCataloguePage";
+import { LoginPage } from "../pages/LoginPage/LoginPage";
+import { RegisterPage } from "../pages/RegisterPage/RegisterPage";
+
+import { ProtectedRoute } from "../routes/ProtectedRoute/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -14,8 +18,16 @@ export const router = createBrowserRouter([
       { path: "", element: <HomePage /> },
       { path: "movies_catalogue", element: <MoviesCataloguePage /> },
       { path: "tvseries_catalogue", element: <TvSeriesCataloguePage /> },
-      { path: "profile", element: <ProfilePage /> },
-      { path: "dashboard", element: <DashboardPage /> },
+      { path: "login", element: <LoginPage /> },
+      { path: "register", element: <RegisterPage /> },
+
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: "profile", element: <ProfilePage /> },
+          { path: "dashboard", element: <DashboardPage /> },
+        ],
+      },
     ],
   },
 ]);

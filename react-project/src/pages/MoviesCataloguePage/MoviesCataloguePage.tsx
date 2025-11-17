@@ -1,3 +1,4 @@
+// MoviesCataloguePage.tsx
 import { useMemo, useState } from "react";
 import { Container, TextInput, Flex, ActionIcon, Text, Loader } from "@mantine/core";
 import { IconFilter } from "@tabler/icons-react";
@@ -10,10 +11,14 @@ import { MediaModal } from "../../components/MediaModal/MediaModal";
 import { AddMediaButton } from "../../components/AddMedia/AddMediaButton";
 import { AddMediaFormModal } from "../../components/AddMedia/AddMediaFormModal";
 
-import type { Movie } from "../../utils/types";
+import { addToCollection, removeFromCollection } from "../../api/collections";
+import { deleteMovie } from "../../api/moviesAndTVSeries";
+import type { Movie, User, MediaStatus } from "../../utils/types";
+import { notifications } from "@mantine/notifications";
+import { apiGetUser } from "../../api/auth";
 
 export function MoviesCataloguePage() {
-  const { data: movies = [], isLoading, isError } = useMovies();
+  const { data: movies = [], isLoading, isError, refetch } = useMovies();
   const [search, setSearch] = useState("");
   const [genresFilter, setGenresFilter] = useState<string[]>([]);
   const [yearsFilter, setYearsFilter] = useState<string[]>([]);
@@ -21,6 +26,14 @@ export function MoviesCataloguePage() {
   const [filtersOpened, filtersCtrl] = useDisclosure(false);
   const [modalOpened, modalCtrl] = useDisclosure(false);
   const [addOpened, addCtrl] = useDisclosure(false);
+
+  const storedUser = localStorage.getItem("authUser");
+  const [currentUser, setCurrentUser] = useState<User | null>(
+    storedUser ? JSON.parse(storedUser) : null
+  );
+
+  const isAuthorized = !!currentUser;
+
 
   const genres = useMemo(
     () => Array.from(new Set(movies.flatMap((m) => m.genre.split(", ").map((g) => g.toLowerCase())))).sort(),
@@ -53,16 +66,61 @@ export function MoviesCataloguePage() {
     return result;
   }, [movies, search, genresFilter, yearsFilter]);
 
+  const handleToggleCollection = async (collection: MediaStatus, movieId: string) => {
+  if (!currentUser) return;
+
+  const currentlyInCollection = currentUser.collections?.[collection]?.includes(movieId) ?? false;
+
+  try {
+    if (!currentlyInCollection) {
+      await addToCollection(currentUser.id, movieId, collection);
+      notifications.show({ title: "Успешно", message: `Добавлено в "${collection}"`, color: "green" });
+    } else {
+      await removeFromCollection(currentUser.id, movieId, collection);
+      notifications.show({ title: "Успешно", message: `Удалено из "${collection}"`, color: "yellow" });
+    }
+
+    const updatedUser = await apiGetUser(currentUser.id);
+    localStorage.setItem("authUser", JSON.stringify(updatedUser));
+    setCurrentUser(updatedUser);
+    refetch();
+  } catch (err) {
+    notifications.show({ title: "Ошибка", message: "Не удалось изменить коллекцию", color: "red" });
+  }
+};
+
+
+  const handleDelete = async (movieId: string) => {
+    if (!currentUser) return;
+    try {
+      await deleteMovie(movieId);
+      notifications.show({ title: "Удалено", message: "Фильм удалён", color: "green" });
+      refetch();
+    } catch (err) {
+      notifications.show({ title: "Ошибка", message: "Не удалось удалить фильм", color: "red" });
+    }
+  };
+
   if (isLoading) return <Loader />;
   if (isError) return <Text c="red">Ошибка загрузки данных</Text>;
 
   return (
     <Container>
       <Flex justify="flex-end" mb="md">
-        <AddMediaButton onClick={addCtrl.open} />
+        <AddMediaButton
+          onClick={addCtrl.open}
+          title="Добавить свой фильм"
+          disabled={!isAuthorized}
+        />
       </Flex>
 
-      <AddMediaFormModal opened={addOpened} onClose={addCtrl.close} type="movie" />
+      <AddMediaFormModal
+        opened={addOpened}
+        onClose={addCtrl.close}
+        type="movie"
+        title="Добавить свой фильм"
+        onAdded={() => refetch()}
+      />
 
       <Flex justify="space-between" mb="xl" w="100%">
         <TextInput
@@ -94,9 +152,19 @@ export function MoviesCataloguePage() {
         onYearsChange={setYearsFilter}
       />
 
-      <MediaGrid items={filtered} onSelect={(movie) => { setSelectedMovie(movie); modalCtrl.open(); }} />
-      <MediaModal opened={modalOpened} onClose={modalCtrl.close} media={selectedMovie} />
+      <MediaGrid
+        items={filtered}
+        currentUser={currentUser}
+        onSelect={(movie) => { setSelectedMovie(movie); modalCtrl.open(); }}
+        onToggleCollection={handleToggleCollection}
+        onDelete={handleDelete}
+      />
 
+      <MediaModal
+        opened={modalOpened}
+        onClose={modalCtrl.close}
+        media={selectedMovie}
+      />
     </Container>
   );
 }

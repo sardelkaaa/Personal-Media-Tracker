@@ -5,7 +5,7 @@ export type MobileNavigationProps = {
 };
 
 interface BaseMedia {
-  id: number;
+  id: string;
   title: string;
   year: string;
   imdb_rating: number;
@@ -17,6 +17,7 @@ interface BaseMedia {
   plot: string;
   poster: string;
   runtime: string;
+  userId: string;
 }
 
 export type Movie = BaseMedia;
@@ -27,3 +28,25 @@ export type TVSeries = BaseMedia & {
 };
 
 export type MediaType = 'movie' | 'tvseries';
+
+export type MediaStatus = 'watching' | 'wantToWatch' | 'watched' | 'favorite';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  collections?: Record<MediaStatus, string[]>;
+}
+
+
+export interface LoginPayload {
+email: string;
+password: string;
+}
+
+export interface RegisterPayload {
+email: string;
+password: string;
+name: string;
+}

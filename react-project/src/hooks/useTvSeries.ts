@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getTvSeries } from '../api/api';
+import { getTvSeries } from '../api/moviesAndTVSeries';
 import type { TVSeries } from '../utils/types';
 
 export const useTvSeries = () => {
