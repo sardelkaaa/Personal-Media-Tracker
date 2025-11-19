@@ -1,7 +1,3 @@
-import React from "react";
-
-interface Props {}
-
-export const DashboardPage = (props: Props) => {
+export const DashboardPage = () => {
   return <h1>DashboardPage</h1>;
 };

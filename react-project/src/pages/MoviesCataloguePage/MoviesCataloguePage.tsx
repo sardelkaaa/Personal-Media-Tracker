@@ -1,4 +1,3 @@
-// MoviesCataloguePage.tsx
 import { useMemo, useState } from "react";
 import { Container, TextInput, Flex, ActionIcon, Text, Loader } from "@mantine/core";
 import { IconFilter } from "@tabler/icons-react";
@@ -11,11 +10,9 @@ import { MediaModal } from "../../components/MediaModal/MediaModal";
 import { AddMediaButton } from "../../components/AddMedia/AddMediaButton";
 import { AddMediaFormModal } from "../../components/AddMedia/AddMediaFormModal";
 
-import { addToCollection, removeFromCollection } from "../../api/collections";
 import { deleteMovie } from "../../api/moviesAndTVSeries";
-import type { Movie, User, MediaStatus } from "../../utils/types";
+import type { Movie, MediaStatus } from "../../utils/types";
 import { notifications } from "@mantine/notifications";
-import { apiGetUser } from "../../api/auth";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { toggleCollection } from "../../utils/collections";
 

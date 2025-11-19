@@ -47,7 +47,6 @@ export function ProfilePage() {
       : [],
   });
 
-  // Получаем все медиа с типом
   const media: MediaItem[] = mediaQueries
     .filter((q) => q.isSuccess && q.data)
     .map((q) => q.data!) as MediaItem[];
