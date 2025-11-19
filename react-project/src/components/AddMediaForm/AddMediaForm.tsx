@@ -123,7 +123,7 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
           </Group>
         )}
 
-        {form.values.images.map((image, index) => (
+        {form.values.images.map((_image, index) => (
           <TextInput key={index} {...form.getInputProps(`images.${index}`)} label={index === 0 ? "Изображения" : ""} placeholder="URL изображения" mb="xs" />
         ))}
 
