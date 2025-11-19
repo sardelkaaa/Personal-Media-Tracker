@@ -64,6 +64,7 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
 
       const mediaData = {
         id: (lastId ? lastId + 1 : 1).toString(),
+        type: mediaType,
         userId: currentUser.id,
         title: values.title,
         year: values.year,

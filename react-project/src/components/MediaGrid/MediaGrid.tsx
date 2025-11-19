@@ -4,7 +4,7 @@ import type { Movie, User, MediaStatus } from "../../utils/types";
 
 interface MediaGridProps {
   items: Movie[];
-  currentUser: User | null;
+  currentUser?: User;
   onSelect: (item: Movie) => void;
   onToggleCollection: (collection: MediaStatus, mediaId: string) => void;
   onDelete?: (mediaId: string) => void;

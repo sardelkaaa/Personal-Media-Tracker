@@ -15,6 +15,8 @@ import { deleteTvSeries } from "../../api/moviesAndTVSeries";
 import type { Movie, User, MediaStatus } from "../../utils/types";
 import { notifications } from "@mantine/notifications";
 import { apiGetUser } from "../../api/auth";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { toggleCollection } from "../../utils/collections";
 
 export function TvSeriesCataloguePage() {
   const { data: tvSeries = [], isLoading, isError, refetch } = useTvSeries();
@@ -26,11 +28,7 @@ export function TvSeriesCataloguePage() {
   const [modalOpened, modalCtrl] = useDisclosure(false);
   const [addOpened, addCtrl] = useDisclosure(false);
 
-  const storedUser = localStorage.getItem("authUser");
-  const [currentUser, setCurrentUser] = useState<User | null>(
-    storedUser ? JSON.parse(storedUser) : null
-  );
-
+  const { data: currentUser, invalidate } = useCurrentUser();
   const isAuthorized = !!currentUser;
 
   const genres = useMemo(
@@ -64,29 +62,18 @@ export function TvSeriesCataloguePage() {
     return result;
   }, [tvSeries, search, genresFilter, yearsFilter]);
 
-  const handleToggleCollection = async (collection: MediaStatus, movieId: string) => {
+  const handleToggleCollection = (collection: MediaStatus, movieId: string) => {
     if (!currentUser) return;
-
-    const currentlyInCollection = currentUser.collections?.[collection]?.includes(movieId) ?? false;
-
-    try {
-      if (!currentlyInCollection) {
-        await addToCollection(currentUser.id, movieId, collection);
-        notifications.show({ title: "Успешно", message: `Добавлено в "${collection}"`, color: "green" });
-      } else {
-        await removeFromCollection(currentUser.id, movieId, collection);
-        notifications.show({ title: "Успешно", message: `Удалено из "${collection}"`, color: "yellow" });
-      }
-
-      const updatedUser = await apiGetUser(currentUser.id);
-      localStorage.setItem("authUser", JSON.stringify(updatedUser));
-      setCurrentUser(updatedUser);
-      refetch();
-    } catch (err) {
-      notifications.show({ title: "Ошибка", message: "Не удалось изменить коллекцию", color: "red" });
-    }
+    toggleCollection(
+      currentUser.id,
+      collection,
+      movieId,
+      "tvseries",
+      currentUser.collections?.[collection] || [],
+      invalidate,
+      refetch
+    );
   };
-
 
   const handleDelete = async (tvId: string) => {
     if (!currentUser) return;

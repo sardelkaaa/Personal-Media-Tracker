@@ -2,6 +2,7 @@
   "movies": [
     {
       "id": "1",
+      "type": "movie",
       "title": "Аватар",
       "year": "2009",
       "imdb_rating": 7.9,
@@ -22,6 +23,7 @@
     },
     {
       "id": "2",
+      "type": "movie",
       "title": "Я - легенда",
       "year": "2007",
       "imdb_rating": 7.2,
@@ -41,6 +43,7 @@
     },
     {
       "id": "3",
+      "type": "movie",
       "title": "300 спартанцев",
       "year": "2006",
       "imdb_rating": 7.7,
@@ -59,6 +62,7 @@
     },
     {
       "id": "4",
+      "type": "movie",
       "title": "Мстители",
       "year": "2012",
       "imdb_rating": 8.1,
@@ -79,6 +83,7 @@
     },
     {
       "id": "5",
+      "type": "movie",
       "title": "Волк с Уолл-стрит",
       "year": "2013",
       "imdb_rating": 8.2,
@@ -99,6 +104,7 @@
     },
     {
       "id": "6",
+      "type": "movie",
       "title": "Интерстеллар",
       "year": "2014",
       "imdb_rating": 8.6,
@@ -121,6 +127,7 @@
   "tvseries": [
     {
       "id": "1",
+      "type": "tvseries",
       "title": "Игра престолов",
       "year": "2011–2019",
       "imdb_rating": 9.5,
@@ -143,6 +150,7 @@
     },
     {
       "id": "2",
+      "type": "tvseries",
       "title": "Викинги",
       "year": "2013–2020",
       "imdb_rating": 8.6,
@@ -165,6 +173,7 @@
     },
     {
       "id": "3",
+      "type": "tvseries",
       "title": "Готэм",
       "year": "2014–2019",
       "imdb_rating": 8,
@@ -187,6 +196,7 @@
     },
     {
       "id": "4",
+      "type": "tvseries",
       "title": "Власть в ночном городе",
       "year": "2014–2020",
       "imdb_rating": 8,
@@ -209,6 +219,7 @@
     },
     {
       "id": "5",
+      "type": "tvseries",
       "title": "Нарко",
       "year": "2015–2017",
       "imdb_rating": 8.9,
@@ -231,6 +242,7 @@
     },
     {
       "id": "6",
+      "type": "tvseries",
       "title": "Во все тяжкие",
       "year": "2008–2013",
       "imdb_rating": 9.5,
@@ -253,6 +265,7 @@
     },
     {
       "id": "7",
+      "type": "tvseries",
       "title": "Люк Кейдж",
       "year": "2016–2018",
       "imdb_rating": 7.9,
@@ -276,23 +289,47 @@
   ],
   "users": [
     {
-      "id": "2668",
-      "email": "123@GMAIL.COM",
+      "id": "0eb2",
+      "email": "adeliya64775@gmail.com",
       "password": "123456",
       "confirmPassword": "123456",
-      "name": "123",
+      "name": "asd",
       "collections": {
-        "watching": [
-          "1"
+        "watching": [],
+        "wantToWatch": [
+          {
+            "id": "1",
+            "type": "movie"
+          },
+          {
+            "id": "2",
+            "type": "tvseries"
+          },
+          {
+            "id": "4",
+            "type": "tvseries"
+          }
         ],
-        "wantToWatch": [],
         "watched": [
-          "4"
+          {
+            "id": "5",
+            "type": "movie"
+          }
         ],
         "favorite": [
-          "5"
+          {
+            "id": "1",
+            "type": "tvseries"
+          }
         ]
       }
+    },
+    {
+      "id": "a7c9",
+      "email": "sdfsdfdsf@rrt.c",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "name": "sdfsdf"
     }
   ]
 }

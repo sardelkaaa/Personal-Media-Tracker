@@ -1,12 +1,12 @@
 import { Card, Image, Text, Box, Menu, Button } from "@mantine/core";
 import { motion } from "framer-motion";
 import { getRatingColor } from "../../utils/mediaUtils";
-import type { Movie, User, MediaStatus } from "../../utils/types";
+import type { Movie, User, MediaStatus, Collections } from "../../utils/types";
 
 interface Props {
   item: Movie;
   onClick: () => void;
-  currentUser: User | null;
+  currentUser?: User;
   onToggleCollection: (collection: MediaStatus, mediaId: string) => void;
   onDelete?: (mediaId: string) => void;
 }
@@ -14,7 +14,7 @@ interface Props {
 export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDelete }: Props) {
   const isOwner = currentUser?.id === item.userId;
 
-  const collections: Record<MediaStatus, string[]> = currentUser?.collections || {
+  const collections: Collections = currentUser?.collections || {
     watching: [],
     wantToWatch: [],
     watched: [],
@@ -22,7 +22,7 @@ export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDe
   };
 
   const isInCollection = (status: MediaStatus) =>
-    collections[status]?.includes(item.id.toString());
+    collections[status]?.some((c) => c.id === item.id && c.type === item.type);
 
   return (
     <motion.div

@@ -6,6 +6,7 @@ export type MobileNavigationProps = {
 
 interface BaseMedia {
   id: string;
+  type: MediaType,
   title: string;
   year: string;
   imdb_rating: number;
@@ -31,22 +32,29 @@ export type MediaType = 'movie' | 'tvseries';
 
 export type MediaStatus = 'watching' | 'wantToWatch' | 'watched' | 'favorite';
 
+export interface CollectionItem {
+  id: string;
+  type: MediaType;
+}
+
+export type Collections = Record<MediaStatus, CollectionItem[]>;
+
 export interface User {
   id: string;
   name: string;
   email: string;
   password: string;
-  collections?: Record<MediaStatus, string[]>;
+  collections?: Collections;
 }
 
 
 export interface LoginPayload {
-email: string;
-password: string;
+  email: string;
+  password: string;
 }
 
 export interface RegisterPayload {
-email: string;
-password: string;
-name: string;
+  email: string;
+  password: string;
+  name: string;
 }
