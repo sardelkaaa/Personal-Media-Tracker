@@ -8,13 +8,13 @@ import { FilterDrawer } from "../../components/FilterDrawer/FilterDrawer";
 import { MediaGrid } from "../../components/MediaGrid/MediaGrid";
 import { MediaModal } from "../../components/MediaModal/MediaModal";
 import { AddMediaButton } from "../../components/AddMedia/AddMediaButton";
-import { AddMediaFormModal } from "../../components/AddMedia/AddMediaFormModal";
 
 import { deleteTvSeries } from "../../api/moviesAndTVSeries";
-import type { Movie, MediaStatus } from "../../utils/types";
+import type { Movie, MediaStatus, TVSeries } from "../../utils/types";
 import { notifications } from "@mantine/notifications";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { toggleCollection } from "../../utils/collections";
+import { AddMediaForm } from "../../components/AddMediaForm/AddMediaForm";
 
 export function TvSeriesCataloguePage() {
   const { data: tvSeries = [], isLoading, isError, refetch } = useTvSeries();
@@ -97,13 +97,18 @@ export function TvSeriesCataloguePage() {
         />
       </Flex>
 
-      <AddMediaFormModal
+      <AddMediaForm
         opened={addOpened}
         onClose={addCtrl.close}
-        type="tvseries"
         title="Добавить свой сериал"
-        onAdded={() => refetch()} 
-      />
+        size="lg"
+        mediaType="tvseries"
+        onSubmit={(item: TVSeries) => {
+          notifications.show({ title: "Успешно", message: `${item.title} добавлен`, color: "green" });
+          refetch();
+        }}
+      >
+      </AddMediaForm>
 
       <Flex justify="space-between" mb="xl" w="100%">
         <TextInput
@@ -141,6 +146,9 @@ export function TvSeriesCataloguePage() {
         onSelect={(tv) => { setSelectedTv(tv); modalCtrl.open(); }}
         onToggleCollection={handleToggleCollection}
         onDelete={handleDelete}
+        onEdit={(e)=>console.log(e)}
+        mediaType="tvseries"
+        refetch={refetch}
       />
 
       <MediaModal

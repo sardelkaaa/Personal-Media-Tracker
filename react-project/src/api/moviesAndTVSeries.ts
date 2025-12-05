@@ -52,5 +52,23 @@ export const addTvSeries = (tvSeriesData: TVSeries): Promise<TVSeries> => axios
     .then(res => res.data)
     .catch(error => console.log(error));
 
+
+export const updateTvSeries = (id: number, tvSeriesData: TVSeries): Promise<TVSeries> => axios
+    .patch(`${BASE_URL}/tvseries/${id}`, tvSeriesData)
+    .then(res => res.data)
+    .catch(error => {
+        console.log(error);
+        throw error;
+    });
+    
+export const updateMovie = (id: number, movieData: Movie): Promise<TVSeries> => axios
+    .patch(`${BASE_URL}/movies/${id}`, movieData)
+    .then(res => res.data)
+    .catch(error => {
+        console.log(error);
+        throw error;
+    });  
+
+
 export const deleteMovie = (id: string) => axios.delete(`${BASE_URL}/movies/${id}`);
 export const deleteTvSeries = (id: string) => axios.delete(`${BASE_URL}/tvseries/${id}`);

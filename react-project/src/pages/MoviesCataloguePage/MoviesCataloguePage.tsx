@@ -8,13 +8,13 @@ import { FilterDrawer } from "../../components/FilterDrawer/FilterDrawer";
 import { MediaGrid } from "../../components/MediaGrid/MediaGrid";
 import { MediaModal } from "../../components/MediaModal/MediaModal";
 import { AddMediaButton } from "../../components/AddMedia/AddMediaButton";
-import { AddMediaFormModal } from "../../components/AddMedia/AddMediaFormModal";
 
 import { deleteMovie } from "../../api/moviesAndTVSeries";
 import type { Movie, MediaStatus } from "../../utils/types";
 import { notifications } from "@mantine/notifications";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { toggleCollection } from "../../utils/collections";
+import { AddMediaForm } from "../../components/AddMediaForm/AddMediaForm";
 
 export function MoviesCataloguePage() {
   const { data: movies = [], isLoading, isError, refetch } = useMovies();
@@ -98,13 +98,18 @@ export function MoviesCataloguePage() {
         />
       </Flex>
 
-      <AddMediaFormModal
+      <AddMediaForm
         opened={addOpened}
         onClose={addCtrl.close}
-        type="movie"
         title="Добавить свой фильм"
-        onAdded={() => refetch()}
-      />
+        size="lg"
+        mediaType="movie"
+        onSubmit={(item: Movie) => {
+          notifications.show({ title: "Успешно", message: `${item.title} добавлен`, color: "green" });
+          refetch();
+        }}
+      >
+      </AddMediaForm>
 
       <Flex justify="space-between" mb="xl" w="100%">
         <TextInput
@@ -142,6 +147,9 @@ export function MoviesCataloguePage() {
         onSelect={(movie) => { setSelectedMovie(movie); modalCtrl.open(); }}
         onToggleCollection={handleToggleCollection}
         onDelete={handleDelete}
+        onEdit={(e)=>console.log(e)}
+        mediaType="movie"
+        refetch={refetch}
       />
 
       <MediaModal

@@ -1,40 +1,98 @@
 import { Button, Modal, TextInput, NumberInput, Textarea, Group, Checkbox } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { MediaType, Movie, TVSeries, User } from '../../utils/types';
-import { addMovie, addTvSeries, getLastMovieId, getLastTvSeriesId } from '../../api/moviesAndTVSeries';
+import { getMovieById, getTvSeriesById, updateMovie, updateTvSeries } from '../../api/moviesAndTVSeries';
 import { notifications } from '@mantine/notifications';
+import { IconX } from '@tabler/icons-react';
 
-interface AddMediaFormProps {
+interface EditMediaFormProps {
   opened: boolean;
   onClose: () => void;
   title: string;
   size: string;
   mediaType: MediaType;
+  mediaId: number;
   onSubmit: (data: Movie | TVSeries) => void;
 }
 
-export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit }: AddMediaFormProps) => {
+export const EditMediaForm = ({ opened, onClose, title, size, mediaType, mediaId, onSubmit }: EditMediaFormProps) => {
   const [loading, setLoading] = useState(false);
+  const [initialData, setInitialData] = useState<TVSeries | Movie | null>(null);
 
   const storedUser = localStorage.getItem('authUser');
   const currentUser: User | null = storedUser ? JSON.parse(storedUser) : null;
 
+  useEffect(() => {
+    if (opened && mediaId) {
+      fetchMediaData();
+    }
+  }, [opened, mediaId]);
+
+  const fetchMediaData = async () => {
+    setLoading(true);
+    try {
+        if (mediaType === 'tvseries') {
+            const media: TVSeries = await getTvSeriesById(mediaId);
+            setInitialData(media);
+            form.setValues({
+            title: media.title || '',
+            year: media.year || '',
+            imdb_rating: media.imdb_rating || 0,
+            genre: media.genre || '',
+            awards: media.awards || '',
+            actors: media.actors || '',
+            country: media.country || '',
+            plot: media.plot || '',
+            poster: media.poster || '',
+            runtime: media.runtime || '',
+            totalSeasons: media.totalSeasons || 1,
+            comingSoon: media.comingSoon || false,
+            images: media.images || []
+        })} else {
+            const media: Movie = await getMovieById(mediaId);
+            setInitialData(media);
+            form.setValues({
+            title: media.title || '',
+            year: media.year || '',
+            imdb_rating: media.imdb_rating || 0,
+            genre: media.genre || '',
+            awards: media.awards || '',
+            actors: media.actors || '',
+            country: media.country || '',
+            plot: media.plot || '',
+            poster: media.poster || '',
+            runtime: media.runtime || '',
+            images: media.images || []
+        })}; 
+    } catch (error) {
+      notifications.show({
+        title: 'Ошибка',
+        message: 'Не удалось загрузить данные сериала',
+        color: 'red',
+        icon: <IconX size={16} />,
+      });
+      onClose();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const form = useForm({
     initialValues: {
-      title: '',
-      year: '',
-      imdb_rating: 0,
-      images: [''],
-      genre: '',
-      awards: '',
-      actors: '',
-      country: '',
-      plot: '',
-      poster: '',
-      runtime: '',
-      totalSeasons: 1,
-      comingSoon: false,
+        title: '',
+        year: '',
+        imdb_rating: 0,
+        images: [''],
+        genre: '',
+        awards: '',
+        actors: '',
+        country: '',
+        plot: '',
+        poster: '',
+        runtime: '',
+        totalSeasons: 1,
+        comingSoon: false,
     },
     validateInputOnBlur: true,
     validate: {
@@ -57,47 +115,45 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
     }
 
     setLoading(true);
-
     try {
-      const lastId = mediaType === 'movie' ? await getLastMovieId() : await getLastTvSeriesId();
+        if (!initialData) {
+            throw new Error('Данные медиа не загружены');
+        }
 
-      const mediaData = {
-        id: (lastId ? lastId + 1 : 1).toString(),
-        type: mediaType,
-        userId: currentUser.id,
-        title: values.title,
-        year: values.year,
-        imdb_rating: values.imdb_rating,
-        images: values.images.filter(img => img.trim() !== ''),
-        genre: values.genre,
-        awards: values.awards,
-        actors: values.actors,
-        country: values.country,
-        plot: values.plot,
-        poster: values.poster,
-        runtime: values.runtime,
-        ...(mediaType === 'tvseries' && {
-          totalSeasons: values.totalSeasons,
-          comingSoon: values.comingSoon,
-        }),
-      };
+        const updateData: TVSeries | Movie = {
+            id: initialData.id,
+            type: initialData.type,
+            userId: initialData.userId,
+            title: values.title,
+            year: values.year,
+            imdb_rating: values.imdb_rating,
+            images: values.images,
+            genre: values.genre,
+            awards: values.awards,
+            actors: values.actors,
+            country: values.country,
+            plot: values.plot,
+            poster: values.poster,
+            runtime: values.runtime,
+            ...(mediaType === 'tvseries' && {
+            totalSeasons: values.totalSeasons,
+            comingSoon: values.comingSoon,
+            }),
+        };
 
-      let savedMedia: Movie | TVSeries;
+        const updatedMedia = mediaType === 'tvseries' 
+            ? await updateTvSeries(mediaId, updateData)
+            : await updateMovie(mediaId, updateData);
+        
 
-      if (mediaType === 'movie') {
-        savedMedia = await addMovie(mediaData);
-      } else {
-        savedMedia = await addTvSeries(mediaData);
-      }
+        onSubmit(updatedMedia);
+        form.reset();
+        onClose();
 
-      // notifications.show({ title: 'Успешно', message: 'Медиа добавлено', color: 'green' });
-      onSubmit(savedMedia);
-      form.reset();
-      onClose();
     } catch (err) {
-      notifications.show({ title: 'Ошибка', message: 'Не удалось добавить медиа', color: 'red' });
+        notifications.show({ title: 'Ошибка', message: 'Не удалось изменить медиа', color: 'red' });
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
 
@@ -130,7 +186,7 @@ export const AddMediaForm = ({ opened, onClose, title, size, mediaType, onSubmit
         </Button>
 
         <Button type="submit" fullWidth loading={loading}>
-          {mediaType === 'movie' ? 'Добавить фильм' : 'Добавить сериал'}
+            Сохранить изменения
         </Button>
       </form>
     </Modal>

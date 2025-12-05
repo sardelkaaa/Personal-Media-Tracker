@@ -122,6 +122,22 @@
       "plot": "Команда исследователей путешествует через червоточину в космосе в попытке обеспечить выживание человечества.",
       "poster": "https://cdn.ananasposter.ru/image/cache/catalog/poster/film/81/16064-1000x830.jpg",
       "runtime": "2 часа 49 мин"
+    },
+    {
+      "id": "7",
+      "type": "movie",
+      "userId": "e199",
+      "title": "Фильмsы",
+      "year": "2020",
+      "imdb_rating": 0,
+      "images": [],
+      "genre": "паропропо",
+      "awards": "",
+      "actors": "",
+      "country": "пропропропро",
+      "plot": "пропропропроп",
+      "poster": "https://cs9.pikabu.ru/post_img/big/2019/11/22/1/157437964813059927.jpg",
+      "runtime": "пропропро"
     }
   ],
   "tvseries": [
@@ -285,6 +301,24 @@
       "runtime": "55 мин",
       "totalSeasons": 2,
       "coming_soon": false
+    },
+    {
+      "id": "8",
+      "type": "tvseries",
+      "userId": "e199",
+      "title": "Сериалс",
+      "year": "2024",
+      "imdb_rating": 0,
+      "images": [],
+      "genre": "павпапрапрап",
+      "awards": "",
+      "actors": "",
+      "country": "рапрапрапрап",
+      "plot": "апрапрапрапр",
+      "poster": "апрапрапрапр",
+      "runtime": "апрапрапрапр",
+      "totalSeasons": 1,
+      "comingSoon": false
     }
   ],
   "users": [
@@ -330,6 +364,13 @@
       "password": "123456",
       "confirmPassword": "123456",
       "name": "sdfsdf"
+    },
+    {
+      "id": "e199",
+      "email": "123456@mail.ru",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "name": "123456"
     }
   ]
 }

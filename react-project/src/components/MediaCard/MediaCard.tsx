@@ -1,7 +1,12 @@
-import { Card, Image, Text, Box, Menu, Button } from "@mantine/core";
+import { Card, Image, Text, Box, Menu, Button, Modal } from "@mantine/core";
 import { motion } from "framer-motion";
 import { getRatingColor } from "../../utils/mediaUtils";
-import type { Movie, User, MediaStatus, Collections } from "../../utils/types";
+import type { Movie, User, MediaStatus, Collections, TVSeries, MediaType } from "../../utils/types";
+import { EditMediaButton } from "../EditMediaButton/EditMediaButton";
+import { useDisclosure } from "@mantine/hooks";
+import { useEffect, useState } from "react";
+import { EditMediaForm } from "../EditMediaForm/EditMediaForm";
+import { notifications } from "@mantine/notifications";
 
 interface Props {
   item: Movie;
@@ -9,10 +14,28 @@ interface Props {
   currentUser?: User;
   onToggleCollection: (collection: MediaStatus, mediaId: string) => void;
   onDelete?: (mediaId: string) => void;
+  onEdit?: (mediaId: string) => void;
+  mediaType: MediaType;
+  refetch: () => void;
 }
 
-export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDelete }: Props) {
+export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDelete, onEdit, mediaType, refetch }: Props) {
   const isOwner = currentUser?.id === item.userId;
+  const [opened, { open, close }] = useDisclosure(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditing(true);
+    open();
+  };
+
+  useEffect(() => {
+    if (!opened) {
+      const timer = setTimeout(() => setIsEditing(false), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [opened]);
 
   const collections: Collections = currentUser?.collections || {
     watching: [],
@@ -28,8 +51,8 @@ export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDe
     <motion.div
       whileHover={{ scale: 0.95 }}
       whileTap={{ scale: 0.9 }}
-      onClick={onClick}
-      style={{ cursor: "pointer" }}
+      onClick={isEditing ? undefined : onClick}
+      style={{ cursor: isEditing ? "default" : "pointer" }}
     >
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         {item.poster && <Card.Section><Image src={item.poster} height={500} alt={item.title} /></Card.Section>}
@@ -78,6 +101,25 @@ export function MediaCard({ item, onClick, currentUser, onToggleCollection, onDe
             </Menu.Dropdown>
           </Menu>
         )}
+
+        
+
+        {currentUser && isOwner && onEdit && (
+          <EditMediaButton onClick={handleEditClick}></EditMediaButton>
+        )}
+
+        <EditMediaForm
+          opened={opened}
+          onClose={close}
+          title="Редактирование медиа"
+          size="lg"
+          mediaType={mediaType}
+          mediaId={parseInt(item.id)}
+          onSubmit={(item: TVSeries | Movie) => {
+            notifications.show({ title: "Успешно", message: `${item.title} изменен`, color: "green" });
+            refetch();
+          }}>
+        </EditMediaForm>
 
         {currentUser && isOwner && onDelete && (
           <Button

@@ -1,3 +1,7 @@
+import { Container } from "@mantine/core";
+
 export const DashboardPage = () => {
-  return <h1>DashboardPage</h1>;
+  return <Container>
+    
+  </Container>;
 };
